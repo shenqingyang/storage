@@ -1,0 +1,30 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://${storage.db.host}:3306/
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: ${storage.db.pw}
+  cloud:
+    nacos:
+      server-addr: 192.168.150.101:8848
+mybatis-plus:
+  configuration:
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+  global-config:
+    db-config:
+      update-strategy: not_null
+      id-type: auto
+
+storage:
+  jwt:
+    location: classpath:storage.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m
+  db:
+    host: localhost
+    pw: 2003219

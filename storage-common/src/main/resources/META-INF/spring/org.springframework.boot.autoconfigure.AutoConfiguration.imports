@@ -1,0 +1,3 @@
+org.shenqy.storagecommon.config.MyBatisConfig
+org.shenqy.storagecommon.config.MvcConfig
+org.shenqy.storagecommon.config.JsonConfig
