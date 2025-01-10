@@ -4,7 +4,7 @@ spring:
   application:
     name: storage-gateway
   datasource:
-    url: jdbc:mysql://${storage.db.host}:3306/storage_user
+    url: jdbc:mysql://${storage.db.host}:3306/storage
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: ${storage.db.pw}

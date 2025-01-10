@@ -4,13 +4,13 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:mysql://${storage.db.host}:3306/
+    url: jdbc:mysql://${storage.db.host}:3306/storage
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: ${storage.db.pw}
   cloud:
     nacos:
-      server-addr: 192.168.150.101:8848
+      server-addr: 127.0.0.1:8848
 mybatis-plus:
   configuration:
     default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
@@ -22,8 +22,8 @@ mybatis-plus:
 storage:
   jwt:
     location: classpath:storage.jks
-    alias: hmall
-    password: hmall123
+    alias: storage
+    password: 2003219
     tokenTTL: 30m
   db:
     host: localhost
