@@ -23,15 +23,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private final PasswordEncoder passwordEncoder;
     private final JwtTool jwtTool;
     private final JwtProperties jwtProperties;
-    private final UserMapper userMapper;
 
     @Override
     public UserLoginVo login(LoginFormDto loginDTO) {
         // 1.数据校验
-        String username = loginDTO.getLoginCount();
+        String loginAccount = loginDTO.getLoginCount();
         String password = loginDTO.getPassword();
         // 2.根据用户名或手机号查询
-        User user = lambdaQuery().eq(User::getLoginAccount, username).one();
+        User user = lambdaQuery().eq(User::getLoginAccount, "shenqy").one();
         Assert.notNull(user, "用户名错误");
         // 4.校验密码
         if (!passwordEncoder.matches(password, user.getPassword())) {
@@ -54,11 +53,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         user.setLoginAccount(registerDto.getLoginAccount());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         user.setUserName(registerDto.getUserName());
-        user.setProfile(registerDto.getProfile());
-        user.setPhone(registerDto.getPhone());
-        user.setCompanyId(registerDto.getCompanyId());
-        user.setStoreId(registerDto.getStoreId());
-        user.setWarehouseId(registerDto.getWarehouseId());
-        return userMapper.insert(user) > 0;
+        if(!registerDto.getProfile().isEmpty())
+            user.setProfile(registerDto.getProfile());
+        if(!registerDto.getPassword().isEmpty())
+            user.setPhone(registerDto.getPhone());
+        if(registerDto.getCompanyId() !=  0)
+            user.setCompanyId(registerDto.getCompanyId());
+        if(registerDto.getStoreId() !=  0)
+            user.setStoreId(registerDto.getStoreId());
+        if(registerDto.getWarehouseId() !=  0)
+            user.setWarehouseId(registerDto.getWarehouseId());
+        return save(user);
     }
 }

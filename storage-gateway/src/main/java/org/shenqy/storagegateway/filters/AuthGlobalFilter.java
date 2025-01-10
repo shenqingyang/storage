@@ -33,7 +33,6 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         // 1.获取request
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getPath().toString();
-        System.out.println(path);
         // 2.判断是否需要做登录拦截
         if(isExclude(path)){
             // 放行

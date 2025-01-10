@@ -16,10 +16,12 @@ spring:
         server-addr: 127.0.0.1:8848
     gateway:
       routes:
-        - id: user # 路由规则id，自定义，唯一
+        - id: users # 路由规则id，自定义，唯一
           uri: lb://user-service # 路由的目标服务，lb代表负载均衡，会从注册中心拉取服务列表
           predicates: # 路由断言，判断当前请求是否符合当前规则，符合则路由到目标服务
-            - Path=/user/**
+            - Path=/users/**
+          filters:
+            - StripPrefix=1
 
 mybatis-plus:
   configuration:
@@ -29,18 +31,16 @@ mybatis-plus:
     db-config:
       update-strategy: not_null
       id-type: auto
+
 knife4j:
   gateway:
     enabled: true
-    # 指定服务发现的模式聚合微服务文档，并且是默认`default`分组
+    # 指定服务发现的模式聚合微服务文档，并且是默认 default 分组
     strategy: discover
     discover:
+      # OpenAPI 3.0 规范
+      version: openapi3
       enabled: true
-      # 指定版本号(Swagger2|OpenAPI3)
-      version : openapi3
-      # 需要排除的微服务(eg:网关服务)
-      excluded-services:
-        - gateway-service
 
 
 
@@ -55,5 +55,7 @@ storage:
     pw: 2003219
   auth:
     excludePaths:
-      - /user/login
-      - /user/register
+      - /users/user/login
+      - /users/user/register
+      - /users/v3/api-docs
+      - /users/doc.html
