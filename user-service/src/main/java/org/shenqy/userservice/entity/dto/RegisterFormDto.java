@@ -16,6 +16,9 @@ public class RegisterFormDto {
     @Schema(description = "登陆账户", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull(message = "登陆账户不能为空")
     private String loginAccount;
+    @Schema(description = "性别", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotNull(message = "性别不能为空")
+    private String gender;
     @Schema(description = "电话")
     private String phone;
     @Schema(description = "头像")

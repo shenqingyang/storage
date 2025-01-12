@@ -6,19 +6,16 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 
 @Data
-public class User {
+public class Warehouse {
     @TableId(type = IdType.AUTO)
-    private Integer userId;
-    private String userName;
-    private String password;
-    private String gender;
-    private String loginAccount;
-    private String phone;
-    private String profile;
-    private String department;
-    private String post;
     private Integer warehouseId;
+    private String chineseName;
+    private String englishName;
+    private String zipCode;
+    private String location;
     private Integer storeId;
+    private Integer directorId;
+    private Integer parentWarehouseId;
     private Integer companyId;
     @TableLogic //逻辑删除
     private Integer deleted;

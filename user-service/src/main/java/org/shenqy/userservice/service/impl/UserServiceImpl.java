@@ -53,6 +53,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         user.setLoginAccount(registerDto.getLoginAccount());
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         user.setUserName(registerDto.getUserName());
+        user.setGender(registerDto.getGender());
         if(!registerDto.getProfile().isEmpty())
             user.setProfile(registerDto.getProfile());
         if(!registerDto.getPassword().isEmpty())

@@ -2,6 +2,7 @@ package org.shenqy.storagegateway.filters;
 
 import com.baomidou.mybatisplus.extension.toolkit.SqlRunner;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.shenqy.storagecommon.exception.UnauthorizedException;
 import org.shenqy.storagegateway.config.AuthProperties;
 import org.shenqy.storagegateway.util.JwtTool;
@@ -18,6 +19,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
@@ -33,6 +35,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         // 1.获取request
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getPath().toString();
+        log.debug(path);
         // 2.判断是否需要做登录拦截
         if(isExclude(path)){
             // 放行
